@@ -2,7 +2,7 @@
 
 > Aholo 全球 3D AI 黑客松参赛作品 · 3D 互动叙事短片
 
-**在线 Demo**：`https://RinKobe.github.io/night-sea-archive/`
+**在线 Demo**：`https://rinkobe.github.io/night-sea-archive/`
 **演示视频**：`docs/assets/demo-walkthrough.mp4`
 **源代码**：`https://github.com/RinKobe/night-sea-archive`
 
@@ -163,7 +163,7 @@ ffmpeg              → 转 H.264 MP4，30fps，8 秒
 
 ## 9. 提交材料
 
-- 在线 Demo：`https://RinKobe.github.io/night-sea-archive/`
+- 在线 Demo：`https://rinkobe.github.io/night-sea-archive/`
 - 演示视频：`docs/assets/demo-walkthrough.mp4`
 - 项目报告：本文件 / `report/report.pdf`
 - 源代码：`https://github.com/RinKobe/night-sea-archive`
