@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Night Sea Ending</title>
+<style>
+  :root{--accent:#7ce6e1;--gold:#f4ca7d}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#03070f}
+  body{font-family:'Noto Serif SC',serif}
+  #stage{position:fixed;inset:0;background:
+    radial-gradient(ellipse at 50% 18%, #173a58 0%, #0a1a2e 42%, #03070f 78%);}
+  #stage:before{content:'';position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.55) 1px, transparent 1px);
+    background-size:54px 54px;opacity:.10}
+  model-viewer{position:absolute;inset:0;width:100%;height:100%;
+    --poster-color:transparent;background:transparent;outline:none}
+  .glow{position:absolute;left:50%;top:50%;width:70vmin;height:70vmin;
+    transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle, color-mix(in srgb, var(--accent) 42%, transparent) 0%, transparent 62%);
+    filter:blur(26px);mix-blend-mode:screen;opacity:.28}
+  .vignette{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.55) 100%)}
+  .beam{position:absolute;right:-12%;top:-30%;width:70%;height:160%;
+    pointer-events:none;opacity:0;transition:opacity 1.2s ease;
+    background:conic-gradient(from 190deg at 92% 18%,
+      transparent 0deg, rgba(244,202,125,.22) 14deg, transparent 30deg);
+    filter:blur(8px);animation:sweep 7s ease-in-out infinite}
+  .scene-bottle .beam{opacity:1}
+  @keyframes sweep{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(10deg)}}
+  .path{position:absolute;left:8%;right:8%;bottom:16%;height:2px;pointer-events:none;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    box-shadow:0 0 18px var(--gold);opacity:0;transition:opacity 1.4s ease}
+  .scene-box .path{opacity:.85}
+  .path i{position:absolute;top:-3px;width:6px;height:6px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 12px var(--gold);
+    animation:flow 3.2s linear infinite}
+  @keyframes flow{from{left:0;opacity:0}10%{opacity:1}90%{opacity:1}to{left:100%;opacity:0}}
+  .particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .particles span{position:absolute;width:2px;height:2px;border-radius:50%;
+    background:#dff6ff;opacity:.0;box-shadow:0 0 8px #bfefff;
+    animation:rise linear infinite}
+  @keyframes rise{0%{transform:translateY(20px);opacity:0}
+    12%{opacity:.85}85%{opacity:.6}100%{transform:translateY(-42vh);opacity:0}}
+  .caption{position:absolute;left:7%;bottom:9%;max-width:60%;pointer-events:none;
+    opacity:0;transform:translateY(14px);transition:opacity 1.4s ease, transform 1.4s ease}
+  .caption.on{opacity:1;transform:none}
+  .eyebrow{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.28em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+  .caption h1{font-size:clamp(34px,4.6vw,56px);font-weight:500;margin:0 0 10px;
+    color:#f6efdf;letter-spacing:.02em;text-shadow:0 4px 30px rgba(0,0,0,.65)}
+  .caption p{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;
+    color:#b9cee4;margin:0}
+  .fade{position:absolute;inset:0;background:#03070f;pointer-events:none;opacity:1;
+    transition:opacity 1.2s ease}
+  .scene-box .glow{background:radial-gradient(circle,
+    color-mix(in srgb, #f4ca7d 40%, transparent) 0%, transparent 62%)}
+</style>
+<script type="module" src="/render/node_modules/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<div id="stage">
+  <model-viewer id="mv"
+    camera-orbit="-44deg 72deg 112%"
+    field-of-view="30deg"
+    exposure="1.18"
+    shadow-intensity="1.25"
+    shadow-softness="0.85"
+    environment-image="neutral"
+    tone-mapping="aces"
+    interaction-prompt="none"
+    disable-zoom disable-pan
+    touch-action="none"></model-viewer>
+  <div class="glow" id="glow"></div>
+  <div class="beam"></div>
+  <div class="vignette"></div>
+  <div class="path" id="path"></div>
+  <div class="particles" id="particles"></div>
+  <div class="caption" id="caption">
+    <div class="eyebrow" id="eyebrow">ENDING · NIGHT SEA</div>
+    <h1 id="title"></h1>
+    <p id="subtitle"></p>
+  </div>
+  <div class="fade" id="fade"></div>
+</div>
+<script type="module">
+const DURATION = 8000;
+const params = new URLSearchParams(location.search);
+const id = params.get('id') || 'bottle';
+const scenes = {
+  bottle: {
+    src: '/dist/assets/tide-glass-bottle.glb',
+    title: '潮汐玻璃瓶',
+    subtitle: '瓶中的微光化为海面航线，灯塔重新亮起。',
+    accent: '#7ce6e1'
+  },
+  box: {
+    src: '/dist/assets/stardust-music-box.glb',
+    title: '星屑音乐盒',
+    subtitle: '旋律让散落的星屑聚成一条回家的路。',
+    accent: '#f4ca7d'
+  },
+  moon: {
+    src: '/dist/assets/paper-moon-lantern.glb',
+    title: '纸月亮灯',
+    subtitle: '鲸舟邮差提着灯穿过夜海，把灯挂回梦岛。',
+    accent: '#f4ca7d'
+  }
+};
+const s = scenes[id] || scenes.bottle;
+document.documentElement.style.setProperty('--accent', s.accent);
+document.body.classList.add('scene-' + id);
+document.querySelector('#title').textContent = s.title;
+document.querySelector('#subtitle').textContent = s.subtitle;
+
+const mv = document.querySelector('#mv');
+const glow = document.querySelector('#glow');
+const caption = document.querySelector('#caption');
+const fade = document.querySelector('#fade');
+const pathEl = document.querySelector('#path');
+
+// deterministic particle field
+const wrap = document.querySelector('#particles');
+let seed = 7;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+for (let i = 0; i < 46; i++) {
+  const el = document.createElement('span');
+  el.style.left = (rnd() * 100).toFixed(2) + '%';
+  el.style.top = (55 + rnd() * 60).toFixed(2) + '%';
+  el.style.animationDuration = (4.5 + rnd() * 5).toFixed(2) + 's';
+  el.style.animationDelay = (-rnd() * 8).toFixed(2) + 's';
+  wrap.appendChild(el);
+}
+for (let i = 0; i < 7; i++) {
+  const d = document.createElement('i');
+  d.style.animationDelay = (i * 0.46).toFixed(2) + 's';
+  pathEl.appendChild(d);
+}
+
+const ease = t => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+let startAt = 0;
+function tick(now) {
+  if (!startAt) startAt = now;
+  const t = Math.min(1, (now - startAt) / DURATION);
+  const e = ease(t);
+  const az = -46 + e * 92;
+  const pol = 73 - e * 9;
+  const rad = 114 - e * 18;
+  mv.setAttribute('camera-orbit', `${az.toFixed(2)}deg ${pol.toFixed(2)}deg ${rad.toFixed(2)}%`);
+  glow.style.opacity = (0.24 + e * 0.5).toFixed(3);
+  glow.style.transform = `translate(-50%,-50%) scale(${(0.92 + e * 0.16).toFixed(3)})`;
+  if (t < 1) requestAnimationFrame(tick);
+}
+
+let started = false;
+function start() {
+  if (started) return;
+  started = true;
+  fade.style.opacity = '0';
+  setTimeout(() => caption.classList.add('on'), 500);
+  setTimeout(() => caption.classList.remove('on'), DURATION - 900);
+  setTimeout(() => { fade.style.opacity = '1'; }, DURATION - 500);
+  requestAnimationFrame(tick);
+  window.__endingLoaded = true;
+}
+mv.addEventListener('loaded', start);
+mv.addEventListener('error', e => console.log('[mv-error]', e.detail && e.detail.type));
+mv.setAttribute('src', s.src);
+setTimeout(() => { if (mv.loaded) start(); }, 4000);
+</script>
+</body>
+</html>

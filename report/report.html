@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 16mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "Noto Sans SC", "Segoe UI", sans-serif;
+  font-size: 10.5pt; line-height: 1.75; color: #1a2433; margin: 0; }
+h1 { font-size: 23pt; color: #0b2a4a; border-bottom: 3px solid #f4ca7d;
+  padding-bottom: 8px; margin: 0 0 16px; }
+h2 { font-size: 15pt; color: #0b2a4a; margin: 24px 0 10px;
+  border-left: 4px solid #7ce6e1; padding-left: 10px; page-break-after: avoid; }
+h3 { font-size: 12pt; color: #24476b; margin: 16px 0 8px; page-break-after: avoid; }
+p { margin: 7px 0; }
+img { max-width: 100%; border-radius: 6px; margin: 6px 0; page-break-inside: avoid; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0; page-break-inside: avoid; }
+th, td { border: 1px solid #cfd8e3; padding: 6px 8px; font-size: 9.5pt; vertical-align: top; }
+th { background: #eef4fa; }
+pre { background: #f5f7fa; border: 1px solid #e1e6ed; padding: 9px;
+  border-radius: 6px; white-space: pre-wrap; font-size: 8.5pt; page-break-inside: avoid; }
+code { font-family: Consolas, "Courier New", monospace; }
+blockquote { border-left: 3px solid #f4ca7d; margin: 10px 0; padding: 4px 12px;
+  color: #445; background: #fbf8f0; }
+hr { border: none; border-top: 1px solid #dde3ea; margin: 18px 0; }
+</style></head>
+<body><h1>梦境失物招领：夜海档案馆</h1>
+<blockquote>
+<p>Aholo 全球 3D AI 黑客松参赛作品 · 3D 互动叙事短片</p>
+</blockquote>
+<p><strong>在线 Demo</strong>：<code>https://&lt;GITHUB_USER&gt;.github.io/night-sea-archive/</code>
+<strong>演示视频</strong>：<code>docs/assets/demo-walkthrough.mp4</code>
+<strong>源代码</strong>：<code>https://github.com/&lt;GITHUB_USER&gt;/night-sea-archive</code></p>
+<hr />
+<h2>一句话概念</h2>
+<p>玩家在漂浮于夜海上的梦境档案馆中，翻看三件由 Aholo Lux3D 生成的遗失物，通过旋转、缩放和寻找藏在背面、底部、内部的细节，推断它们各自属于谁。归还成功后，播放由同一件 GLB 本地渲染的电影化结局短片。</p>
+<h2>1. 项目概述</h2>
+<p>《梦境失物招领：夜海档案馆》是一款运行在浏览器中的 3D 互动叙事短片。作品把“3D 模型”从展示对象变成叙事媒介：线索不在文字里，而在物体真实的背面、底部和内部。玩家必须真正观察三维形体，才能推进故事。</p>
+<p>作品参加 Aholo 全球 3D AI 黑客松。核心 3D 资产全部由 <strong>Aholo Lux3D</strong> 生成；结局短片由同一份 GLB 在本地渲染，保证网页、模型与视频三者的轮廓、配色和线索标记一致。</p>
+<p><img alt="档案馆入口" src="../screenshots/01-home.png" /></p>
+<h2>2. 玩法流程</h2>
+<ol>
+<li>进入“夜海档案馆”，看到三件漂浮的失物。</li>
+<li>点击物品，进入 3D 观察模式。</li>
+<li>拖动旋转、滚轮缩放，查看正面、背面、底部或内部。</li>
+<li>找到隐藏线索，例如鲸鱼印记、潮汐刻度或残缺旋律。</li>
+<li>从两位候选失主中选择一位，查看判断依据。</li>
+<li>归还成功，播放该物品的电影化结局短片。</li>
+<li>三件物品全部归还后，点亮“夜海记忆地图”。</li>
+</ol>
+<p><img alt="记忆地图" src="../screenshots/04-map.png" /></p>
+<h2>3. 三件失物</h2>
+<h3>纸月亮灯</h3>
+<ul>
+<li><strong>外观</strong>：暖象牙色手工纸灯，月牙轮廓，黄铜提环，内部有微弱暖光。</li>
+<li><strong>隐藏线索</strong>：灯底有鲸鱼压印，提环内侧刻着潮汐日期。</li>
+<li><strong>失主</strong>：负责把梦送回海面的鲸舟邮差。</li>
+<li><strong>结局</strong>：鲸舟邮差提着月亮灯穿过发光的夜海，把灯挂回远处的梦岛。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>3D 观察</th>
+<th>电影化结局</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="纸月亮灯观察" src="../screenshots/02-observe-moon.png" /></td>
+<td><img alt="纸月亮灯结局" src="../screenshots/03-ending-moon.png" /></td>
+</tr>
+</tbody>
+</table>
+<h3>潮汐玻璃瓶</h3>
+<ul>
+<li><strong>外观</strong>：蓝绿色半透明漂流瓶，瓶中悬浮一小片会发光的海草。</li>
+<li><strong>隐藏线索</strong>：瓶塞内侧藏有一座小岛的轮廓，瓶身缺口与海图上的缺口吻合。</li>
+<li><strong>失主</strong>：一直等待回信的灯塔女孩。</li>
+<li><strong>结局</strong>：瓶中的微光变成海面航线，灯塔重新亮起。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>3D 观察</th>
+<th>电影化结局</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="潮汐玻璃瓶观察" src="../screenshots/02-observe-bottle.png" /></td>
+<td><img alt="潮汐玻璃瓶结局" src="../screenshots/03-ending-bottle.png" /></td>
+</tr>
+</tbody>
+</table>
+<h3>星屑音乐盒</h3>
+<ul>
+<li><strong>外观</strong>：深蓝木质音乐盒，表面有星屑纹理，打开后出现一只旋转的小鸟。</li>
+<li><strong>隐藏线索</strong>：底部有三颗星的排列，内部旋律对应档案馆穹顶的星座。</li>
+<li><strong>失主</strong>：忘记自己名字的梦境旅人。</li>
+<li><strong>结局</strong>：音乐盒旋律让散落的星屑聚合成一条回家的路。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>3D 观察</th>
+<th>电影化结局</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="星屑音乐盒观察" src="../screenshots/02-observe-box.png" /></td>
+<td><img alt="星屑音乐盒结局" src="../screenshots/03-ending-box.png" /></td>
+</tr>
+</tbody>
+</table>
+<h2>4. Aholo Lux3D 使用证明</h2>
+<p>三件核心资产均由 Aholo Lux3D 生成，任务记录保存在 <code>aholo-lux3d-task.json</code>。</p>
+<table>
+<thead>
+<tr>
+<th>资产</th>
+<th>生成方式</th>
+<th>Lux3D 任务 ID</th>
+<th>报价积分</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纸月亮灯</td>
+<td>文生 3D</td>
+<td>8325054</td>
+<td>13</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>潮汐玻璃瓶</td>
+<td>文生 3D</td>
+<td>8326675</td>
+<td>—</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>星屑音乐盒</td>
+<td>文生 3D</td>
+<td>8326700</td>
+<td>—</td>
+<td>成功</td>
+</tr>
+</tbody>
+</table>
+<p>账户积分快照：<strong>3587 credits</strong>（生成后记录于任务文件）。</p>
+<h3>过程证据：失败尝试</h3>
+<p>纸月亮灯第一轮使用 <code>stylized cinematic</code> 风格时被平台拒绝：</p>
+<pre><code class="language-json">&quot;failedAttempt&quot;: {
+  &quot;style&quot;: &quot;stylized cinematic&quot;,
+  &quot;reason&quot;: &quot;unsupported style&quot;,
+  &quot;status&quot;: &quot;rejected&quot;
+}
+</code></pre>
+<p>随后改用受支持风格重新生成，得到最终 GLB。该记录保留在 <code>aholo-lux3d-task.json</code> 中，作为“提示词迭代 → 资产结果”的过程证据。</p>
+<h3>生成提示词</h3>
+<p><strong>纸月亮灯</strong></p>
+<pre><code class="language-text">stylized cinematic 3D prop for an interactive web story, a handmade ivory paper moon lantern shaped like a crescent moon, warm inner glow, delicate folded paper texture, small brass handle, a subtle embossed whale emblem on the underside, readable silhouette from every angle, clean materials, no text, no background, game-ready GLB asset
+</code></pre>
+<p><strong>潮汐玻璃瓶</strong></p>
+<pre><code class="language-text">stylized cinematic 3D prop, a small sea-green translucent glass message bottle from a dream ocean, rounded worn edges, cork stopper, a tiny glowing piece of seaweed floating inside, a hidden island-shaped mark under the stopper, readable silhouette, clean game-ready materials, no text, no background, GLB asset
+</code></pre>
+<p><strong>星屑音乐盒</strong></p>
+<pre><code class="language-text">stylized cinematic 3D prop, a small deep-blue wooden music box covered with subtle star-dust patterns, hinged lid, tiny rotating bird mechanism visible inside, three-star constellation mark on the bottom, soft magical reflections, readable silhouette, clean game-ready materials, no text, no background, GLB asset
+</code></pre>
+<h2>5. 技术实现</h2>
+<ul>
+<li>原生 HTML / CSS / JavaScript，无需构建步骤</li>
+<li><code>model-viewer</code> 加载 GLB，支持旋转、缩放和触摸</li>
+<li>拖动或滚轮触发线索发现，随后解锁失主选择</li>
+<li><code>localStorage</code> 保存已归还物品和地图进度</li>
+<li>结局使用 HTML5 <code>&lt;video&gt;</code> 播放，加载失败时保留 CSS 降级画面</li>
+<li>全部资源本地托管，打开网页即可体验</li>
+</ul>
+<h2>6. 结局短片：同一 GLB 的本地电影化渲染</h2>
+<p>Aholo 黑客松中 <strong>LuxReal 为可选工具</strong>，且比赛仅发放 Aholo Lux3D 积分，未包含 LuxReal 积分。因此本项目采用本地渲染管线完成结局镜头，既保证与网页模型一致，也不额外消耗视频平台积分。</p>
+<p>管线：</p>
+<pre><code class="language-text">render/ending.html  → model-viewer 加载 GLB + 8 秒电影化运镜 + 夜海粒子 + 字幕
+render/record.mjs   → Playwright 驱动 Chrome 录制 1280×720 画面
+ffmpeg              → 转 H.264 MP4，30fps，8 秒
+</code></pre>
+<p>输出：</p>
+<ul>
+<li><code>docs/assets/paper-moon-ending.mp4</code></li>
+<li><code>docs/assets/tide-glass-bottle-ending.mp4</code></li>
+<li><code>docs/assets/stardust-music-box-ending.mp4</code></li>
+</ul>
+<p>三段视频均为 1280×720 / 30fps / 8 秒，主体、配色和线索标记与网页中的 GLB 完全一致。</p>
+<h2>7. 完成度与可运行性</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三件 Lux3D 资产</td>
+<td>✅ 全部生成并加载</td>
+</tr>
+<tr>
+<td>3D 旋转 / 缩放观察</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>隐藏线索与失主判断</td>
+<td>✅ 三件物品各一轮</td>
+</tr>
+<tr>
+<td>三段结局短片</td>
+<td>✅ 本地渲染，自动播放</td>
+</tr>
+<tr>
+<td>记忆地图与进度保存</td>
+<td>✅ localStorage</td>
+</tr>
+<tr>
+<td>80 秒完整演示录屏</td>
+<td>✅ <code>docs/assets/demo-walkthrough.mp4</code></td>
+</tr>
+<tr>
+<td>端到端自动化测试</td>
+<td>✅ 三件物品均验证 video readyState=4</td>
+</tr>
+</tbody>
+</table>
+<h2>8. 评审亮点</h2>
+<ol>
+<li><strong>3D 直接承担玩法</strong>：线索藏在背面、底部和内部，截图和 2D 图片无法替代交互观察。</li>
+<li><strong>跨媒介一致性</strong>：同一份 GLB 同时出现在网页和结局短片中，验证了从 AI 生成到可运行作品的完整链路。</li>
+<li><strong>完整闭环</strong>：开始 → 观察 → 判断 → 归还 → 结局 → 地图，体验短而完整，评委可在几十秒内理解价值。</li>
+<li><strong>工程可复现</strong>：资产任务记录、提示词、渲染脚本、演示录屏全部保留。</li>
+</ol>
+<h2>9. 提交材料</h2>
+<ul>
+<li>在线 Demo：<code>https://&lt;GITHUB_USER&gt;.github.io/night-sea-archive/</code></li>
+<li>演示视频：<code>docs/assets/demo-walkthrough.mp4</code></li>
+<li>项目报告：本文件 / <code>report/report.pdf</code></li>
+<li>源代码：<code>https://github.com/&lt;GITHUB_USER&gt;/night-sea-archive</code></li>
+<li>三件 GLB：<code>docs/assets/*.glb</code></li>
+<li>三段结局短片：<code>docs/assets/*-ending.mp4</code></li>
+<li>过程证据：<code>aholo-lux3d-task.json</code>、<code>screenshots/</code>、<code>render/</code></li>
+</ul>
+<hr />
+<p><em>本作品为 Aholo 全球 3D AI 黑客松参赛项目。核心 3D 内容由 Aholo Lux3D 生成；结局短片由同一 GLB 本地渲染。</em></p></body></html>
