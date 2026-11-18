@@ -3,7 +3,7 @@
 > Aholo 全球 3D AI 黑客松参赛作品 · 3D 互动叙事短片
 
 **在线 Demo**：`https://rinkobe.github.io/night-sea-archive/`
-**演示视频**：`docs/assets/demo-walkthrough.mp4`
+**演示视频**：`docs/demo-walkthrough.mp4`
 **源代码**：`https://github.com/RinKobe/night-sea-archive`
 
 ---
@@ -151,7 +151,7 @@ ffmpeg              → 转 H.264 MP4，30fps，8 秒
 | 隐藏线索与失主判断 | ✅ 三件物品各一轮 |
 | 三段结局短片 | ✅ 本地渲染，自动播放 |
 | 记忆地图与进度保存 | ✅ localStorage |
-| 80 秒完整演示录屏 | ✅ `docs/assets/demo-walkthrough.mp4` |
+| 80 秒完整演示录屏 | ✅ `docs/demo-walkthrough.mp4` |
 | 端到端自动化测试 | ✅ 三件物品均验证 video readyState=4 |
 
 ## 8. 评审亮点
@@ -164,7 +164,7 @@ ffmpeg              → 转 H.264 MP4，30fps，8 秒
 ## 9. 提交材料
 
 - 在线 Demo：`https://rinkobe.github.io/night-sea-archive/`
-- 演示视频：`docs/assets/demo-walkthrough.mp4`
+- 演示视频：`docs/demo-walkthrough.mp4`
 - 项目报告：本文件 / `report/report.pdf`
 - 源代码：`https://github.com/RinKobe/night-sea-archive`
 - 三件 GLB：`docs/assets/*.glb`
